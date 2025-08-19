@@ -1,0 +1,61 @@
+{% extends "base.html" %} {% block title %}Login{% endblock %} {% block
+body_class %}auth-page{% endblock %} {% block body %}
+
+<div class="home-link-container">
+  <a href="{{ url_for('index') }}" class="home-link">&larr; Back to Home</a>
+</div>
+
+<div class="auth-container">
+  <h1>Login</h1>
+
+  <!-- Display a success message if registration was successful -->
+  {% if request.args.get('registered') == '1' %}
+  <p class="auth-note" style="color: #4caf50">
+    Registration successful! Your wallet has been created. Please log in.
+  </p>
+  {% endif %}
+
+  <!-- Container for error messages -->
+  <div id="login-error" style="color: red"></div>
+
+  <form
+    id="login-form"
+    class="auth-form"
+    method="POST"
+    action="{{ url_for('auth.login_route') }}"
+  >
+    <input
+      type="text"
+      id="mobile-number"
+      name="mobile_number"
+      placeholder="Mobile Number or email"
+      class="input-field"
+      required
+    />
+    <input
+      type="password"
+      id="password"
+      name="password"
+      placeholder="Password"
+      class="input-field"
+      required
+    />
+    <button type="submit" class="btn btn-primary">Login</button>
+  </form>
+
+  <!-- ✅ Add "Forgot password?" link here -->
+  <div class="auth-note" style="margin-top: -10px; margin-bottom: 15px;">
+    <a href="{{ url_for('auth.forgot_password_form') }}" class="auth-link">Forgot password?</a>
+  </div>
+  
+  <div class="auth-note">
+    Don’t have an account?
+    <a href="{{ url_for('auth.register_form') }}" class="auth-link"
+      >Register here</a
+    >
+  </div>
+</div>
+
+<!-- Use the AJAX-based login.js -->
+<script src="{{ url_for('static', filename='js/login.js') }}"></script>
+{% endblock %}

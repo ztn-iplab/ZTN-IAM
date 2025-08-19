@@ -1,0 +1,1403 @@
+/* --------------------------------------------------------------------
+   1. GLOBAL & BASE STYLES
+-------------------------------------------------------------------- */
+
+/* Import a clean, modern font */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap");
+
+/* Reset defaults */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Root variables for repeated values */
+:root {
+  --bg-dark-gradient: linear-gradient(120deg, #1c1c3a 0%, #212141 100%);
+  --card-bg: rgba(45, 47, 74, 0.9);
+  --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  --input-bg: #0d1117;
+  --input-border: #30363d;
+  --input-focus: #0366d6;
+  --text-placeholder: #8b949e;
+  --brand-green: #2e7d32;
+  --brand-green-dark: #1b5e20;
+  --brand-blue: #2962ff;
+  --brand-blue-dark: #1b47cc;
+}
+
+/* Base body styling - 
+   DO NOT center content here, so that the dashboard layout can work properly. */
+body {
+  font-family: "Inter", sans-serif;
+  background: var(--bg-dark-gradient);
+  color: #ffffff;
+  min-height: 100vh;
+}
+
+/* By default, remove underline from anchor tags. */
+a {
+  text-decoration: none;
+  color: inherit; /* So links match the parent color unless specified */
+}
+
+/* Utility class for a card style */
+.card {
+  background-color: var(--card-bg);
+  box-shadow: var(--card-shadow);
+  border-radius: 12px;
+}
+
+/* --------------------------------------------------------------------
+   2. AUTH PAGES (Login / Registration)
+-------------------------------------------------------------------- */
+
+/* 
+   Add class="auth-page" to the <body> in your login/registration templates 
+   to center the content vertically & horizontally.
+*/
+.auth-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: var(--bg-dark-gradient);
+}
+
+/* Auth container card for login/register forms */
+.auth-container {
+  width: 360px;
+  padding: 30px 25px;
+  text-align: center;
+  background-color: var(--card-bg);
+  box-shadow: var(--card-shadow);
+  border-radius: 12px;
+}
+
+.auth-container h1 {
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+/* Auth form fields */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-field {
+  padding: 12px;
+  font-size: 14px;
+  border-radius: 6px;
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+  color: #ffffff;
+  margin-bottom: 16px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  text-align: left;
+}
+
+.input-field::placeholder {
+  color: var(--text-placeholder);
+}
+
+.input-field:focus {
+  border-color: var(--input-focus);
+  box-shadow: 0 0 0 1px var(--input-focus);
+}
+
+/* Buttons (common) */
+.btn {
+  padding: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  color: #fff;
+}
+
+/* Primary button: Dark Green */
+.btn-primary {
+  background-color: var(--brand-green);
+}
+
+.btn-primary:hover {
+  background-color: var(--brand-green-dark);
+}
+
+/* Secondary button: Light Blue (semi-transparent) */
+.btn-secondary {
+  background-color: #74e1f083;
+}
+
+.btn-secondary:hover {
+  background-color: #74e1f083;
+}
+
+/* Auth note & link (for "Don't have an account?" etc.) */
+.auth-note {
+  font-size: 0.9rem;
+  color: #ccccdd;
+}
+
+.auth-link {
+  color: #8fa3ff;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.auth-link:hover {
+  color: #b3c7ff;
+  text-decoration: underline;
+}
+
+.home-link-container {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.home-link {
+  text-decoration: none;
+  color: #888;
+  transition: color 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.home-link:hover {
+  color: var(--brand-green);
+}
+
+.error-message {
+  color: red;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+/* --------------------------------------------------------------------
+   3. HOME / LANDING PAGE (Optional)
+-------------------------------------------------------------------- */
+.home-container {
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 60px 20px;
+  text-align: center;
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+}
+
+.home-container h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.home-container p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #d1d1e0;
+  margin-bottom: 30px;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* --------------------------------------------------------------------
+   4. DASHBOARD LAYOUT
+-------------------------------------------------------------------- */
+
+/* Outer container for the dashboard pages */
+.dashboard-layout {
+  display: flex; /* side-by-side: sidebar + main content */
+  min-height: 100vh;
+}
+
+/* Sidebar on the left */
+.sidebar {
+  background-color: #2c3e50;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+}
+
+.sidebar-header {
+  padding: 20px;
+  background-color: #263445;
+}
+
+.app-brand {
+  margin: 0;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 20px;
+  margin: 0;
+  flex: 1;
+}
+
+.sidebar-menu li {
+  margin-bottom: 15px;
+}
+
+.sidebar-menu li a {
+  color: #8fa3ff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.sidebar-menu li a:hover {
+  color: #b3c7ff;
+}
+
+/* Main content on the right */
+.main-content {
+  flex: 1; /* take remaining space */
+  display: flex;
+  flex-direction: column; /* top bar at top, footer at bottom, widgets in between */
+  background: var(--bg-dark-gradient);
+  color: #fff;
+}
+
+/* Top bar (across the top of main content) */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.top-bar-left {
+  font-size: 1.5rem;
+}
+
+.top-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.top-bar-icon {
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.top-bar-avatar {
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+/* The widgets area below the top bar */
+.widgets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Each widget is a card */
+.widget {
+  flex: 1;
+  min-width: 280px;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  background-color: var(--card-bg);
+}
+
+/* Titles for wallet/transactions widgets */
+.transaction-form {
+  display: flex;
+  align-items: center; /* Ensures elements align vertically in the center */
+  gap: 10px; /* Adds spacing between elements */
+  flex-wrap: wrap; /* Prevents breaking on small screens */
+}
+
+.transaction-form .input-field {
+  flex: 1; /* Makes inputs expand evenly */
+  min-width: 120px; /* Ensures minimum width */
+}
+
+.transaction-form .btn-primary {
+  white-space: nowrap; /* Prevents button text from wrapping */
+  padding: 10px 15px;
+}
+
+/* Consistent Table Styling for the transaction history */
+/*  */
+.transaction-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 0.95rem;
+  text-align: left;
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.transaction-table th,
+.transaction-table td {
+  padding: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.transaction-table thead {
+  background-color: var(--brand-blue);
+  color: #ffffff;
+}
+
+.transaction-table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* For Agent Simcard Transactions history */
+/*  */
+.sim-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 0.95rem;
+  text-align: left;
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.sim-table th,
+.sim-table td {
+  padding: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.sim-table thead {
+  background-color: var(--brand-blue);
+  color: #ffffff;
+}
+
+.sim-table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* --------------------------------------------------------------------
+   5. FOOTER
+-------------------------------------------------------------------- */
+.footer {
+  margin-top: auto; /* push the footer to bottom of .main-content column */
+  text-align: center;
+  padding: 15px;
+  background-color: var(--card-bg);
+  box-shadow: var(--card-shadow);
+}
+.footer p {
+  margin: 0;
+  color: #ccccdd;
+}
+
+/* --------------------------------------------------------------------
+   6. SPECIFIC ELEMENTS
+-------------------------------------------------------------------- */
+
+/* Logout Button / Link */
+#logout-button,
+#logout-link {
+  cursor: pointer;
+  background-color: var(--brand-blue);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  margin-top: 20px;
+  color: #fff;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+#logout-button:hover,
+#logout-link:hover {
+  background-color: var(--brand-blue-dark);
+}
+
+/* ======================= */
+/* Admin Panel styles 
+=======================*/
+
+/* ✅ Ensure table headers are always visible and blue */
+/* Ensure the table header stays visible */
+.admin-table thead {
+  display: table-header-group !important;
+  background-color: var(--brand-blue);
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 100; /* Keep header above rows */
+}
+
+/* Ensure the actions column header is centered */
+.admin-table th.actions-header {
+  text-align: center !important;
+  padding-right: 15px; /* Proper spacing */
+}
+
+/* Ensure general table column spacing and alignment */
+.admin-table th,
+.admin-table td {
+  padding: 12px;
+  text-align: left;
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+td.action-buttons {
+  overflow: visible !important; //Very important line, for the admin table Actions
+}
+
+.admin-table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 0.95rem;
+  text-align: left;
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.admin-table th,
+.adminim-table td {
+  padding: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.admin-table thead {
+  background-color: var(--brand-blue);
+  color: #ffffff;
+}
+
+.locked-user-row {
+  background-color: #ffe6e6 !important;
+  color: #a80000;
+  font-weight: bold;
+}
+
+.badge + small {
+  display: block;
+  font-size: 0.75rem;
+}
+
+#daterange {
+  background-color: white;
+  cursor: pointer;
+}
+
+/* ======================= */
+/* Global Search Bar Styles */
+/* ======================= */
+#user-search-container {
+  display: flex;
+  align-items: center;
+  max-width: 600px;
+  display: flex;
+  align-items: center;
+}
+
+#user-search {
+  padding: 5px 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  color: #000;
+  flex-grow: 1;
+}
+
+#search-user-btn {
+  padding: 8px 14px;
+  font-size: 14px;
+  background-color: #34495e !important;
+  color: #fff !important;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-left: 8px;
+  transition: background-color 0.2s ease;
+}
+
+#search-user-btn:hover {
+  background-color: #2c3e50 !important;
+}
+
+/* Override the modal dialog to match the auth container width */
+.modal-dialog {
+  max-width: 360px;
+  margin: auto;
+}
+
+/* Override modal content to match your auth container style */
+.modal-content {
+  background-color: var(--card-bg) !important; /* Uses your card background */
+  border: none !important;
+  border-radius: 12px !important;
+  box-shadow: var(--card-shadow) !important;
+}
+
+/* Remove modal header border (if not desired) */
+.modal-header {
+  border-bottom: none;
+}
+
+/* Optionally, hide the close button if you want a cleaner look
+.btn-close {
+  display: none;
+} */
+
+/* Override modal footer border if needed */
+.modal-footer {
+  border-top: none;
+  padding: 1rem;
+}
+
+/* Ensure table cells do not wrap */
+#admin-user-list td {
+  white-space: nowrap; /* Prevents text wrapping */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Adds '...' if text is too long */
+}
+
+.action-buttons div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px; /* Adds spacing between buttons */
+}
+
+/* Ensure buttons do not shrink */
+.action-buttons button {
+  flex-grow: 1;
+  min-width: 100px; /* Adjust button width */
+  display: flex; /*This is making the .dropdown visible*/
+  flex-wrap: nowrap;
+  gap: 3px;
+  justify-content: center;
+}
+
+/* Specifically for admin buttons */
+/* Force all buttons to stay in a single row */
+.action-buttons {
+  display: flex;
+  flex-wrap: nowrap; /* ✅ Prevents buttons from going to the next line */
+  gap: 3px; /* Reduced gap for better spacing */
+  justify-content: center;
+}
+
+/* Style smaller buttons */
+.action-buttons button {
+  flex: 1;
+  min-width: 80px; /* ✅ Smaller width */
+  max-width: 100px; /* ✅ Keeps consistency */
+  font-size: 12px; /* ✅ Reduce font size */
+  padding: 4px 6px; /* ✅ Makes buttons more compact */
+  text-align: center;
+}
+
+/* ======================= */
+/* Specificaly for agent dashbord but also works for the admin dashboard users list*/
+/* ======================= */
+/* Agent Simcard registration */
+
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* ✅ This ensures spacing between input and button */
+}
+
+.fixed-input-wrapper {
+  width: 250px !important; /* ✅ Fix input width */
+  display: inline-block;
+}
+//* ✅ Style the dropdown button */
+
+/* ✅ Ensure Actions button has a slightly darker green on hover */
+.action-buttons .dropdown-toggle:hover {
+  background-color: var(--brand-green-dark) !important;
+}
+
+/* ✅ Style the dropdown menu */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: var(--card-bg);
+  min-width: 150px;
+  box-shadow: var(--card-shadow);
+  padding: 8px;
+  z-index: 1050; /* Ensure it appears above other elements */
+  border-radius: 4px;
+  text-align: left;
+  white-space: nowrap;
+  right: 0;
+  border: 1px solid var(--input-border);
+  overflow-y: auto;
+  transform-origin: top;
+  max-height: 200px; /* Prevents dropdown from being too tall */
+}
+
+/* ✅ Dropdown opens upwards when required */
+.dropup .dropdown-menu {
+  bottom: 100%;
+  top: auto !important; /* Ensures it always opens upwards when needed */
+}
+
+/* ✅ Ensure dropdown doesn't go out of the viewport */
+.dropdown-menu[data-position="up"] {
+  bottom: 100%;
+  top: auto;
+}
+
+.dropdown-menu[data-position="down"] {
+  top: 100%;
+  bottom: auto;
+}
+
+/* ✅ Style buttons inside the dropdown */
+.dropdown-menu .btn-sm {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 6px 10px;
+  font-size: 12px;
+  border-radius: 3px;
+  text-align: left;
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* ✅ Default Hover Background */
+.dropdown-menu .btn-sm:hover {
+  background-color: var(--brand-blue-dark);
+}
+
+/* ✅ Individual Button Hover Colors */
+.dropdown-menu .btn-sm.view-btn:hover {
+  background-color: var(--brand-blue); /* Blue */
+}
+.dropdown-menu .btn-sm.activate-btn:hover {
+  background-color: var(--brand-green); /* Green */
+}
+.dropdown-menu .btn-sm.suspend-btn:hover {
+  background-color: #ff9800; /* Orange */
+}
+.dropdown-menu .btn-sm.transfer-btn:hover {
+  background-color: #8e44ad; /* Purple */
+}
+.dropdown-menu .btn-sm.delete-btn:hover {
+  background-color: #d32f2f; /* Red */
+}
+.dropdown-menu .btn-sm.verify-btn:hover {
+  background-color: #27ae60; /* Deep Green */
+}
+.dropdown-menu .btn-sm.edit-btn:hover {
+  background-color: #3498db; /* Light Blue */
+}
+.dropdown-menu .btn-sm.assign-role-btn:hover {
+  background-color: #9b59b6; /* Soft Purple */
+}
+
+/* ✅ Icon and Text Alignment */
+.dropdown-menu .btn-sm i {
+  margin-right: 8px;
+}
+
+/* ✅ Align icon and text */
+.dropdown-menu .btn-sm i {
+  margin-right: 8px;
+}
+
+/* ✅ Ensure relative context so dropdown appears correctly */
+.transaction-table td.action-buttons {
+  position: relative;
+}
+
+/* ✅ Ensure action cell height matches table row */
+.transaction-table td.action-buttons {
+  vertical-align: middle;
+  position: relative;
+  height: 100%; /* Ensures it fills the row */
+  padding: 0 10px; /* Optional: controls spacing inside the cell */
+}
+
+/* ✅ Optional: force dropdown menu to stay within table layout */
+.transaction-table .dropdown-menu {
+  left: auto;
+  right: 0;
+}
+
+.transaction-table td.action-buttons .dropdown-toggle {
+  text-decoration: none !important;
+}
+
+/* Transactions text messafe colorning */
+.text-danger {
+  color: #e74c3c; /* Red */
+}
+
+.text-warning {
+  color: #f39c12; /* Orange/Yellow */
+}
+
+.text-success {
+  color: #2ecc71; /* Green */
+}
+
+.text-muted {
+  color: #95a5a6; /* Gray */
+}
+
+/* ✅ Fix SIM Details Modal - Remove Extra Space */
+/* ✅ Fix SIM Details Modal - Now with Dark Blue */
+#simDetailsModal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  max-width: 90%;
+  background-color: rgb(22, 59, 119); /* ✅ Dark Blue */
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  min-height: auto !important;
+  height: auto !important;
+}
+
+/* ✅ Fix modal content */
+#simDetailsModal .modal-content {
+  padding: 20px;
+  color: white;
+  max-height: 90vh;
+  overflow-y: auto;
+  height: auto !important;
+  background-color: rgb(
+    22,
+    59,
+    119
+  ) !important; /* ✅ Ensure content is also dark blue */
+}
+
+/* ✅ Ensure the modal header also follows the new color */
+#simDetailsModal .modal-header {
+  background: rgb(22, 59, 119) !important; /* ✅ Dark Blue */
+  color: white;
+  font-size: 16px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+/* ✅ Fix unwanted extra space */
+#simDetailsModal .modal-body {
+  padding-bottom: 10px !important;
+  margin-bottom: 0 !important;
+}
+
+/* ✅ Remove any invisible empty elements */
+#simDetailsModal::after {
+  content: none !important;
+}
+
+/* ✅ Ensure no unnecessary padding */
+#simDetailsModal p {
+  margin-bottom: 5px !important;
+}
+
+/* ✅ Ensure the close button & drag handle */
+#simDetailsModal .modal-header {
+  cursor: move; /* ✅ Make it draggable */
+  padding: 10px;
+  background: var(--primary-color);
+  color: white;
+  font-size: 16px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+/* ✅ Close button */
+#simDetailsModal .close {
+  float: right;
+  font-size: 20px;
+  cursor: pointer;
+  color: #fff;
+}
+
+#simDetailsModal .close:hover {
+  color: red;
+}
+
+/* ✅ Fix SIM Details Modal */
+
+#simDetailsModal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  max-width: 90%;
+  background-color: rgb(22, 59, 119); /* ✅ Dark Blue */
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  min-height: auto !important;
+  height: auto !important;
+}
+
+/* ✅ Fix modal content */
+#simDetailsModal .modal-content {
+  padding: 20px;
+  color: white;
+  max-height: 90vh;
+  overflow-y: auto;
+  height: auto !important;
+  background-color: rgb(
+    22,
+    59,
+    119
+  ) !important; /* ✅ Ensure content is also dark blue */
+}
+
+/* ✅ Ensure the modal header also follows the new color */
+#simDetailsModal .modal-header {
+  background: rgb(22, 59, 119) !important; /* ✅ Dark Blue */
+  color: white;
+  font-size: 16px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+/* ✅ Fix unwanted extra space */
+#simDetailsModal .modal-body {
+  padding-bottom: 10px !important;
+  margin-bottom: 0 !important;
+}
+
+/* ✅ Remove any invisible empty elements */
+#simDetailsModal::after {
+  content: none !important;
+}
+
+/* ✅ Ensure no unnecessary padding */
+#simDetailsModal p {
+  margin-bottom: 5px !important;
+}
+
+/* ✅ Ensure the close button & drag handle */
+#simDetailsModal .modal-header {
+  cursor: move; /* ✅ Make it draggable */
+  padding: 10px;
+  background: var(--primary-color);
+  color: white;
+  font-size: 16px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+/* ✅ Close button */
+#simDetailsModal .close {
+  float: right;
+  font-size: 20px;
+  cursor: pointer;
+  color: #fff;
+}
+
+#simDetailsModal .close:hover {
+  color: red;
+}
+
+/* Home page styles */
+
+.navbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(
+    20,
+    20,
+    40,
+    0.95
+  ); /* Darker background, slightly transparent */
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  padding: 15px 0;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Adds slight shadow for depth */
+}
+
+.navbar-container {
+  width: 90%;
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar h2 {
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.navbar nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar ul li {
+  display: inline;
+}
+
+/* Contact button - normal background with hover effect */
+.navbar-buttons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.navbar-buttons .nav-link {
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar-buttons .nav-link:hover {
+  background-color: var(--brand-green);
+  color: #fff;
+}
+
+.contact-btn {
+  padding: 8px 12px;
+  color: #fff;
+  background-color: var(--button-bg);
+  text-decoration: none;
+  border-radius: 4px;
+  border: 2px solid var(--brand-green);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.contact-btn:hover {
+  background-color: var(--brand-green);
+  color: #fff;
+}
+
+/* Hero and other sections */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Make it take the full viewport height */
+  background: url("/static/images/hero.png") no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Dark overlay for readability */
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 20px;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.hero p {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.hero .btn-primary {
+  padding: 12px 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 8px;
+  background-color: var(--brand-green);
+  color: #fff;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.hero .btn-primary:hover {
+  background-color: var(--brand-green-dark);
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  .hero p {
+    font-size: 1.2rem;
+  }
+  .hero .btn-primary {
+    font-size: 1rem;
+  }
+}
+.services,
+.auth-section,
+.about,
+.contact {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 30px;
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+}
+.service-cards {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.service-card {
+  flex: 1;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s ease-in-out;
+}
+
+.service-card:hover {
+  transform: scale(1.05);
+}
+/* Contact Section Layout */
+.contact-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap; /* Ensures responsiveness */
+}
+
+/* Equal Size for Get in Touch and Quick Links */
+.contact-form-card,
+.quick-links-card {
+  flex: 1;
+  max-width: 400px; /* Ensures both cards are the same width */
+  padding: 20px;
+}
+
+/* Quick Links Styling */
+.quick-links {
+  list-style: none;
+  padding: 0;
+}
+
+.quick-links li {
+  margin-bottom: 8px;
+}
+
+.quick-links li a {
+  color: var(--brand-blue);
+  text-decoration: none;
+  transition: color 0.3s ease-in-out, text-decoration 0.3s ease-in-out;
+}
+
+.quick-links li a:hover {
+  color: var(--brand-green);
+  text-decoration: underline;
+}
+
+/* Contact Info Styling */
+.contact-info p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.contact-info i {
+  color: var(--brand-green);
+  font-size: 16px;
+}
+
+/* Contact Form with Inline Labels */
+.form-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.form-group label {
+  flex: 1;
+  font-size: 14px;
+  font-weight: bold;
+  color: #d1d1e0;
+  text-align: right;
+}
+
+.form-group .input-field {
+  flex: 2;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 6px;
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+  color: #ffffff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group .input-field:focus {
+  border-color: var(--input-focus);
+  box-shadow: 0 0 0 1px var(--input-focus);
+}
+
+/* Consent Checkbox */
+.form-consent {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-consent input {
+  transform: scale(1.2);
+}
+
+/* Submit Button Full Width */
+.full-width-btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: var(--brand-green);
+  color: #fff;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+.full-width-btn:hover {
+  background-color: var(--brand-green-dark);
+}
+
+/* Enhance Section Titles */
+h2 {
+  color: var(--brand-blue);
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+/* Darker Background for Headers & Descriptions */
+.service-card h3 {
+  background: var(--card-bg); /* Uses your card background */
+  padding: 10px;
+  border-radius: 6px;
+  text-align: center;
+  color: var(--brand-blue);
+}
+
+/* Description with Darker Background */
+.service-card p {
+  background: rgba(20, 20, 40, 0.9); /* Slightly darker than card background */
+  padding: 12px;
+  border-radius: 6px;
+  color: #d1d1e0; /* Lighter text for contrast */
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+/* Transaction Card Hover Effect (Keep Existing Effect) */
+.service-card:hover p {
+  background: rgba(40, 40, 80, 1); /* Slightly lighter glow effect */
+  color: var(--brand-green); /* Keeps your existing color change */
+}
+
+/* About section styles */
+.about-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start; /* Make sure items align at the top */
+  flex-wrap: wrap;
+}
+
+.about-text {
+  flex: 1;
+  min-width: 300px;
+  padding: 20px;
+  text-align: left !important; /* Force left alignment */
+  display: block; /* Ensure it behaves as a normal block */
+}
+
+.about-image {
+  flex: 1;
+  min-width: 300px;
+  text-align: center;
+  padding: 20px;
+}
+
+.about-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+}
+
+.btn-left {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 6px;
+  background-color: var(--brand-green);
+  color: #fff;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  width: fit-content; /* Prevents full width */
+  margin-left: 0 !important; /* Forces it to stay left */
+}
+
+.btn-left:hover {
+  background-color: var(--brand-green-dark);
+}
+
+
+/* Settings Model */
+
+/* 🔲 Modal Backdrop */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+
+}
+
+/* 🧱 Modal Panel */
+.modal-panel {
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow);
+  border-radius: 12px;
+  padding: 1.5rem;
+  color: #fff;
+  z-index: 1000;
+  cursor: grab;
+  
+}
+
+/* 🧩 Header */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.modal-close {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* 📚 Modal Body Sections */
+.modal-section-title {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  color: var(--brand-blue);
+}
+
+.modal-links li {
+  margin: 0.25rem 0;
+}
+
+.modal-links a {
+  color: var(--brand-blue);
+  text-decoration: none;
+}
+
+.modal-links a:hover {
+  text-decoration: underline;
+}
+
+/* Danger Button */
+.btn-danger {
+  margin-top: 1rem;
+  background: var(--brand-green-dark);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.text-red {
+  color: #ff6b6b;
+}
